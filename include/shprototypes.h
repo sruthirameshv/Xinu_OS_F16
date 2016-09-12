@@ -63,6 +63,9 @@ extern	shellcmd  xsh_udpdump	(int32, char *[]);
 
 /* in file xsh_udpecho.c */
 extern	shellcmd  xsh_udpecho	(int32, char *[]);
+/* in file xsh_hello.c */
+extern  shellcmd xsh_hello      (int32, char *[]); 
+
 
 /* in file xsh_udpeserver.c */
 extern	shellcmd  xsh_udpeserver (int32, char *[]);
