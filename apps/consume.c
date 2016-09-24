@@ -3,7 +3,7 @@
 
 void consumer(int count) {
 	int i =1;
-	while(i<count){
+	while(i<=count){
 		printf("\nConsumer consumed:%d",n);
 		i++;
 	}
