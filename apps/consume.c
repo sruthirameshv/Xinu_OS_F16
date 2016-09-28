@@ -4,7 +4,9 @@
 void consumer(int count) {
 	int i =1;
 	while(i<=count){
-		printf("\nConsumer consumed:%d",n);
+		wait(produced);
+		printf("Consumer consumed:%d \n",n);
+		signal(consumed);
 		i++;
 	}
 }
