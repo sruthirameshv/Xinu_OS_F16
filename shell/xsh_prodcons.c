@@ -32,9 +32,9 @@ shellcmd xsh_prodcons(int nargs, char *args[])
       resume( create(future_cons, 1024, 20, "fcons3", 1, f3) );
       resume( create(future_prod, 1024, 20, "fprod3", 1, f3) );
 
-      future_free(f1);
-      future_free(f2);
-      future_free(f3);
+      //future_free(f1);
+      //future_free(f2);
+      //future_free(f3);
 
       return 0;
     }
