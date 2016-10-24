@@ -1,0 +1,7 @@
+	Assignment -5
+Team Contribution:
+The assignment was divided evenly between Raghuveer Raavi and Sruthi Ramesh Vani.
+Sruthi wrote the functionality of xsh_prodcons.c, future_free.c, future_alloc.c and future.h
+Raghuveer wrote code and functionality for future_get.c, future_set.c, future_cons.c and future prod.c
+The new funcitons were distributed evenly.
+We included the future.h into the xinu.h and just importing xinu everywhere.
