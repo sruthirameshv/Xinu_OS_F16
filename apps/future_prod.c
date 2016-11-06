@@ -1,29 +1,10 @@
-//#include <xinu.h>
-#include <future.h>
-typedef unsigned int         uint;
-/*uint future_prod(future *fut) {
-  int i, j=0;
-  j = (int)fut;
-  for (i=0; i<1000; i++) {
-    j += i;
-  }
-  future_set(fut, &j);
-  return OK;
-}*/
-uint future_prod(future *fut)
-{
-  int i, j, status;
-  j = (int)fut;
+#include <xinu.h>
 
-  for (i=0; i<1000; i++) {
-    j += i;
-  }
-  kprintf("produced %d\n",j);
-  status=future_set(fut, &j);
-  if (status < 1)
-  {
-    kprintf("future_set failed\n");
-    return -1;
-  }
+uint future_prod(future *fut) {
+  int i, j;
+  j = 10;
+  i = rand();
+  printf("Produced %d\n",i);
+  future_set(fut, &i);
   return OK;
 }

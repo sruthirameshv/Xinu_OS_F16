@@ -40,6 +40,7 @@
 #include <am335x_control.h>
 #include <am335x_eth.h>
 #include <armv7a.h>
+#include <queueds.h>
 #include <future.h>
 
 #endif

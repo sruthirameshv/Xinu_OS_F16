@@ -1,27 +1,21 @@
-//#include <xinu.h>
-#include<future.h>
-future* future_alloc(int future_flag) {
-	future *p;
-	p = (future *)getmem(sizeof(future));
-       if (p!=NULL){
-			p->flag=future_flag;
-			p->state=FUTURE_EMPTY;
-			p->set_q=init_q();
-			p->get_q=init_q();
-		}
-		return p;	
-/*fut->value = (int*)getmem(sizeof(int));
-	fut->flag = future_flags;
-	int status1 = initializeQueue(&(obj->set_queue), 100);
-	int status2 = initializeQueue(&(obj->get_queue), 100);
-		
-		if(status1 == -1 || status2 == -1)
-		{
-			freemem((char*)obj, sizeof(obj));
-			kprintf("Queue cannot be created");
-			return NULL;
-		}
+#include <xinu.h>
 
-	fut->state = FUTURE_EMPTY;
-	return fut;*/
+future* future_alloc(int future_flags){
+	future *myFuture;
+	myFuture = (future *)getmem(sizeof(future));
+	myFuture->value = (int*)getmem(sizeof(int));
+	myFuture->flag = future_flags;
+	myFuture->state = FUTURE_EMPTY;
+
+	if(future_flags == FUTURE_SHARED) {
+		//myFuture->get_queue = (queue *)getmem(sizeof(queue));
+		queue_init(&myFuture->get_queue);
+	} else if(future_flags == FUTURE_QUEUE) {
+		//myFuture->get_queue = (queue *)getmem(sizeof(queue));
+		queue_init(&myFuture->get_queue);
+		//myFuture->set_queue = (queue *)getmem(sizeof(queue));
+		queue_init(&myFuture->set_queue);
+	}
+	return myFuture;
+
 }
