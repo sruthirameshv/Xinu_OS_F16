@@ -13,7 +13,7 @@
 #define INODE_TYPE_FILE 1
 #define INODE_TYPE_DIR 2
 
-#define O_CREAT 0  (1<<3)
+#define O_CREAT (1<<3)
 #define O_RDONLY (1<<0)
 #define O_WRONLY (1<<1)
 #define O_RDWR   (1<<2)
@@ -61,7 +61,7 @@ struct fsystem {
 /* file and directory functions */
 int fs_open(char *filename, int flags);
 int fs_close(int fd);
-int fs_create(char *filename, int mode);
+//int fs_create(char *filename, int mode);
 int fs_create(char *filename);
 int fs_seek(int fd, int offset);
 int fs_read(int fd, void *buf, int nbytes);

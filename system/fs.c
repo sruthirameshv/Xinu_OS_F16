@@ -90,7 +90,7 @@ int fs_write(int fd, void *buf, int nbytes)
 }
 
 
-int fs_open(char *filename, int mode)
+int fs_open(char *filename, int flags)
 {
     struct inode in;
     int inode_num;

@@ -1,4 +1,4 @@
-nclude <xinu.h>
+#include <xinu.h>
 
 /*------------------------------------------------------------------------
  *  new_getstk  -  Allocate stack memory, returning highest word address using Best FIT method

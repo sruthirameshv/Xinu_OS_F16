@@ -1,4 +1,4 @@
-nclude <xinu.h>
+#include <xinu.h>
 
 /*------------------------------------------------------------------------
  *  getmem  -  Allocate heap storage, returning lowest word address
