@@ -42,5 +42,6 @@
 #include <armv7a.h>
 #include <queueds.h>
 #include <future.h>
+#include <fs.h>
 
 #endif

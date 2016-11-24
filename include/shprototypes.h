@@ -19,14 +19,23 @@ extern	shellcmd  xsh_date	(int32, char *[]);
 /* in file xsh_devdump.c */
 extern	shellcmd  xsh_devdump	(int32, char *[]);
 
+/* in file xsh_fstest.c */
+extern	shellcmd  xsh_fstest	(int32 , char *[]);
+
 /* in file xsh_echo.c */
 extern	shellcmd  xsh_echo	(int32, char *[]);
+
+/* in file xsh_prodcons.c */
+extern	shellcmd  xsh_prodcons	(int32, char *[]);
 
 /* in file xsh_ethstat.c */
 extern	shellcmd  xsh_ethstat	(int32, char *[]);
 
 /* in file xsh_exit.c */
 extern	shellcmd  xsh_exit	(int32, char *[]);
+
+/* in file xsh_hello.c */
+extern  shellcmd  xsh_hello	(int32, char *[]);
 
 /* in file xsh_help.c */
 extern	shellcmd  xsh_help	(int32, char *[]);
@@ -78,6 +87,3 @@ extern 	shellcmd xsh_hello	(int32,	char *[]);
 
 /* in file xsh_mmu.c */
 extern  shellcmd xsh_mmu	(int32, char *[]);
-
-/* in file xsh_prodcons.h */
-extern  shellcmd xsh_prodcons	(int32, char *[]);
