@@ -16,7 +16,8 @@ typedef struct futent
 {
    int *value;		
    int flag;		
-   int state;         	
+   int state; 
+   char* str_val;       	
    pid32 pid;
    queue set_queue;
    queue get_queue;

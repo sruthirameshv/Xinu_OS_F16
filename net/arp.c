@@ -110,6 +110,7 @@ status	arp_resolve (
 	apkt.arp_sndpa = NetData.ipucast; /* IP address of interface	*/
 	memset(apkt.arp_tarha, '\0', ARP_HALEN); /* Target HA is unknown*/
 	apkt.arp_tarpa = nxthop;	  /* Target protocol address	*/
+	// apkt.arp_timeRecieved = 0;
 
 	/* Convert ARP packet from host to net byte order */
 
@@ -148,6 +149,40 @@ status	arp_resolve (
 	memcpy(mac, arptr->arhaddr, ARP_HALEN);
 	restore(mask);
 	return OK;
+}
+
+/* ------------------------------------------------------------------------------
+*  arp_clearCache  - Clears arp cache entries added before currentime - 5 minutes
+*--------------------------------------------------------------------------------
+*/
+
+void arp_clearCache(void){
+
+    intmask	mask;
+    struct	arpentry  *arptr;	/* Ptr to ARP cache entry	*/
+    mask = disable();
+    int slot=0;
+	for (slot=0; slot < ARP_SIZ; slot++) {
+		arptr = &arpcache[slot];
+
+		/* Skip table entries that are unused */
+
+		if (arptr->arstate == AR_FREE || arptr->arstate == AR_PENDING) {
+			continue;
+		}
+
+		/* If it is stale then we remove it */
+
+		if (arptr->arp_timeRecieved + 60 <= clktime) {
+			// remove that entry
+			 arptr->arstate = AR_FREE;
+			 memset((char *)arptr, 0, sizeof(struct arpentry));
+		}
+	}
+
+	restore(mask);
+	return;
+
 }
 
 
@@ -209,6 +244,7 @@ void	arp_in (
 
 		memcpy(arptr->arhaddr, pktptr->arp_sndha, ARP_HALEN);
 
+		arptr->arp_timeRecieved = clktime;
 		/* If a process was waiting, inform the process */
 
 		if (arptr->arstate == AR_PENDING) {
@@ -251,6 +287,9 @@ void	arp_in (
 		arptr = &arpcache[slot];
 		arptr->arpaddr = pktptr->arp_sndpa;
 		memcpy(arptr->arhaddr, pktptr->arp_sndha, ARP_HALEN);
+
+		arptr->arp_timeRecieved = clktime;
+		
 		arptr->arstate = AR_RESOLVED;
 	}
 
@@ -264,6 +303,7 @@ void	arp_in (
 	apkt.arp_hlen	= ARP_HALEN;		/* Ethernet address size*/
 	apkt.arp_plen	= ARP_PALEN;		/* IP address size	*/
 	apkt.arp_op	= ARP_OP_RPLY;		/* Type is Reply	*/
+	// apkt.arp_timeRecieved = clktime;
 
 	/* Insert local Ethernet and IP address in sender fields	*/
 
